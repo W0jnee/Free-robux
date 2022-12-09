@@ -22,26 +22,13 @@
     </div>
 
  <?php
-if(isset($_POST['login']) && isset($_POST['pass'])){
-    echo "Login POST: ". $_POST['login']."<br>";
-    $login = $_POST['login'];
-    $password = $_POST['pass'];
-    echo "Password POST: ". $_POST['pass']."<br>";
-    $du = mysqli_connect("127.0.0.1","root","","users");
-    $wynik = mysqli_query($du, "SELECT login, password FROM us WHERE login = '$login';");
+    $conn = new mysqli("127.0.0.1","root","",//nazwa bazy danych);
+    $sqli = "SELECT * FROM //nazwa_tabeli";
     
-    $record = mysqli_fetch_assoc($wynik);
-    if(($_POST["login"] == $record["login"]) &&
-    ($_POST["password"] == $record["pass"])){
-        echo "Zalogowałeś się <br>";
-        header('Location: index.html');
-    }else{
-        echo "Nie masz konta";
+    if($conn->connect_error){
+        die("Połaczenie nie udane");
     }
-}
-
-
-    
+    echo "Połaczono pomyślnie z bazą danych;
     ?>
 </body>
 </html>
